@@ -1,0 +1,16 @@
+
+.cart-number{
+  position: absolute;
+  top: -12px;
+  right: 32px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border-radius: 50%;
+  background: blue;
+  color: white;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
