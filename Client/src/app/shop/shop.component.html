@@ -1,1 +1,51 @@
-<p>shop works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h5 class="text-warning ms-5">Sort </h5>
+      <select class="form-select mb-3">
+        <option selected> Alphabetic</option>
+        <option>Price High TO Low</option>
+        <option>Price Low TO High</option>
+      </select>
+      <h5 class="text-danger ms-5">Brands </h5>
+      <ul class="list-group my-2">
+        <li class="list-group-item" *ngFor="let brand of brandsDat" [class.active]="brand.id === brandIdSelected"
+          [value]="brand.id" (click)="onBrandsIdSelected(brand.id)">
+          {{brand.name}}</li>
+      </ul>
+
+      <h5 class="text-danger ms-5">Types</h5>
+      <ul class="list-group my-2">
+        <li class="list-group-item" *ngFor="let types of typesData" [class.active]="types.id === typeIdSelected"
+          [value]="types.id" (click)="onTypesIdSelected(types.id)">
+          {{types.name}}</li>
+      </ul>
+
+    </div>
+
+
+
+    <div class="col-md-9">
+
+      <div class="d-flex justify-content-between align-items-center pb-2">
+        <span>Showing <strong>10</strong> of<strong> 18</strong> Result</span>
+
+        <div class="d-flex">
+          <input type="text" placeholder="Search" class="form-control me-3">
+          <input type="submit" class="btn btn-outline-primary mx-2">
+          <input type="reset" class="btn btn-outline-success">
+        </div>
+      </div>
+
+
+      <div class="row row-cols-3 g-3">
+        <div class="col" *ngFor="let item of ProductsData">
+          <app-product-item [Products]="item"></app-product-item>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
