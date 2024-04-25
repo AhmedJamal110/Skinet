@@ -2,10 +2,9 @@
   <div class="row">
     <div class="col-md-3">
       <h5 class="text-warning ms-5">Sort </h5>
-      <select class="form-select mb-3">
-        <option selected> Alphabetic</option>
-        <option>Price High TO Low</option>
-        <option>Price Low TO High</option>
+      <select class="form-select mb-3" (change)="onSortedSelected($event)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.name}}</option>
+
       </select>
       <h5 class="text-danger ms-5">Brands </h5>
       <ul class="list-group my-2">

@@ -17,11 +17,12 @@ BaseUrl : string = `https://localhost:7277/api/`;
 
 constructor(private _HttpClient:HttpClient) { }
 
-  getProducts(brandsId? : number , typesId? : number )
+  getProducts(brandsId? : number , typesId? : number , sort? :string)
   {
     let params = new HttpParams();
     if(brandsId) params = params.append("brandId" , brandsId)
     if(typesId) params = params.append("typesId" , typesId)
+    if(sort) params = params.append("sort" , sort)
 
     return this._HttpClient.get<Pagination<Product[]>>(this.BaseUrl + `products`, {params})
   }
