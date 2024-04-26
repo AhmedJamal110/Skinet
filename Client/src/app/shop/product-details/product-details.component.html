@@ -1,0 +1,26 @@
+<div *ngIf="productDetail">
+
+  <div class="row">
+    <div class="col-6">
+      <img src="{{productDetail.pictureUrl}}" alt="{{productDetail.name}}">
+    </div>
+    <div class="col-6">
+      <h2 class="text-cenetr">{{productDetail.name}}</h2>
+      <p>{{productDetail.price | currency }}</p>
+      <div class="d-flex justify-content-start align-items-center">
+        <i class="fa fa-minus-circle icom-item text-warning me-2"></i>
+        <span class="numer me-2">2</span>
+        <i class="fa fa-plus-circle icom-item text-warning me-2"></i>
+        <button class="btn btn-outline-secondary ms-4">Add TO Card</button>
+      </div>
+      <div>
+        <h6 class="h3 mt-4">Description</h6>
+        <p>{{productDetail.description}}</p>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>
