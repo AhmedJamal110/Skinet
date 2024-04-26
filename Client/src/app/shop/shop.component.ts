@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ShopParams } from './../shared/models/shopParams';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ShopService } from './shop.service';
 import { Product } from '../shared/models/Products';
 import { Brands } from '../shared/models/Brands';
@@ -11,12 +12,15 @@ import { Types } from '../shared/models/Types';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+  @ViewChild("search") searchTarem? : ElementRef;
+
+
   ProductsData: Product[] = [];
   brandsDat : Brands[] = [];
   typesData : Types[] =[];
-  brandIdSelected  =0;
-  typeIdSelected  =0;
-  sortSelected = "name"
+ ShopParams = new ShopParams();
+
+totalCount = 0;
   sortOptions = [
     {name:"Alphabitc", value:"name"},
     {name:"price high to low" , value:"priceAsc"},
@@ -36,8 +40,16 @@ export class ShopComponent implements OnInit {
 
 
     GetAllProducts(){
-      this._shopService.getProducts(this.brandIdSelected , this.typeIdSelected , this.sortSelected).subscribe({
-        next:(response) => this.ProductsData = response.data,
+      this._shopService.getProducts(this.ShopParams).subscribe({
+        next:(response) =>{
+         this.ProductsData = response.data,
+         this.ShopParams.pageNumber = response.pageIndex;
+         this.ShopParams.pageSize = response.pageSize;
+         this.totalCount = response.count;
+
+
+        },
+
         error:(err) => console.warn(err),
       })
     }
@@ -61,20 +73,49 @@ GetAllTypes(){
 
 
   onBrandsIdSelected(brandId : number){
-    this.brandIdSelected = brandId;
+    this.ShopParams.brandId = brandId;
     this.GetAllProducts();
 
   }
   onTypesIdSelected(typeId : number){
-    this.typeIdSelected = typeId;
+    this.ShopParams.typeId = typeId;
     this.GetAllProducts();
 
   }
 
     onSortedSelected(event : any ){
-      this.sortSelected = event.target.value;
+      this.ShopParams.sort = event.target.value;
       this.GetAllProducts();
     }
+
+    onPageChanged(event : any){
+      if(this.ShopParams.pageNumber !== event){
+
+        this.ShopParams.pageNumber = event;
+
+        this.GetAllProducts();
+
+      }
+
+
+
+    }
+
+     onSearchButton(){
+
+      this.ShopParams.search = this.searchTarem?.nativeElement.value;
+
+      this.GetAllProducts();
+     }
+
+     onResetButton(){
+        if(this.searchTarem)
+            this.searchTarem.nativeElement.value = '';
+
+        this.ShopParams = new ShopParams();
+        this.GetAllProducts();
+
+     }
 
 }
 

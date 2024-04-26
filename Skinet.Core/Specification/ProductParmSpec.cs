@@ -12,9 +12,9 @@ namespace Skinet.Core.Specification
         public int? TypeId { get; set; }
         public string? Sort { get; set; }
 		
-		private const int MAXPAGESIZE = 20;
+		private const int MAXPAGESIZE = 10;
 		
-		private int pageSize = 18 ;
+		private int pageSize = 6 ;
 
 		public int PigeSize
 		{
