@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Skinet.API.DTO;
 using Skinet.API.Entities;
+using Skinet.Core.Entities;
 using Skinet.Core.Identity;
 using System.Net.Sockets;
 
@@ -18,6 +19,9 @@ namespace Skinet.API.Helper
 
 
             CreateMap<Address, AddressDto>().ReverseMap();
+
+            CreateMap<CustomerBasketDto, CustomerBasket>();
+            CreateMap<BasketItemDto, BasketItem>();
 
         }
     }

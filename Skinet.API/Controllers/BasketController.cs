@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Skinet.API.DTO;
 using Skinet.API.Errors;
 using Skinet.Core.Entities;
 using Skinet.Core.Repository;
@@ -9,11 +11,13 @@ namespace Skinet.API.Controllers
 	public class BasketController : BaseController
 	{
 		private readonly IBasketRepository _basketRepository;
+        private readonly IMapper _mapper;
 
-		public BasketController( IBasketRepository basketRepository)
+        public BasketController( IBasketRepository basketRepository , IMapper mapper)
         {
 			_basketRepository = basketRepository;
-		}
+            _mapper = mapper;
+        }
 
 		[HttpGet]
 		public async Task<ActionResult<CustomerBasket>> GetCustomerBasket(string basketId)
@@ -23,9 +27,11 @@ namespace Skinet.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
+		public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
 		{
-			var CreatedOrUpdated =await _basketRepository.UpdateBsketAsync(basket);
+			var customerMapped = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
+
+			var CreatedOrUpdated =await _basketRepository.UpdateBsketAsync(customerMapped);
 
 			if (CreatedOrUpdated is null)
 				return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest));

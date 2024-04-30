@@ -1,5 +1,6 @@
 ﻿using Skinet.API.Entities;
 using Skinet.Core.Entities;
+using Skinet.Core.Orders_Aggregate;
 using Skinet.Infrastructure.Data.Context;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,21 @@ namespace Skinet.Infrastructure.Data.Helper
 				}
 			}
 
+			if (!context.DeliveryMethods.Any())
+			{
+				var deliveryData = File.ReadAllText("../Skinet.Infrastructure/Data/DataSeeding/delivery.json");
+				var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryData);
+				if (deliveryMethods?.Count > 0)
+				{
+					foreach (var delivery in deliveryMethods)
+					{
 
+						await context.Set<DeliveryMethod>().AddAsync(delivery);
+					}
+
+					await context.SaveChangesAsync();
+				}
+			}
 
 		}
 
