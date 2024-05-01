@@ -2,9 +2,8 @@
 
 namespace Skinet.API.DTO
 {
-	public class AddressDto
-	{
-        [Required]
+    public class OrderAddressDto
+    {
         public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
@@ -19,6 +18,5 @@ namespace Skinet.API.DTO
         [Required]
         public string ZipCode { get; set; }
 
-
-	}
+    }
 }

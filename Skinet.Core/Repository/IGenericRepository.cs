@@ -21,5 +21,12 @@ namespace Skinet.Core.Repository
 
 		Task<int> GetCountWithSpecByAsync(ISpecification<T> Spec);
 
+		Task Add(T item);
+
+
+		void Uodate(T item);
+
+		void Delete(T item);
+
 	}
 }

@@ -3,6 +3,7 @@ using Skinet.API.DTO;
 using Skinet.API.Entities;
 using Skinet.Core.Entities;
 using Skinet.Core.Identity;
+using Skinet.Core.Orders_Aggregate;
 using System.Net.Sockets;
 
 namespace Skinet.API.Helper
@@ -22,7 +23,7 @@ namespace Skinet.API.Helper
 
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();
-
+            CreateMap<OrderAddressDto, OrderAddress>();
         }
     }
 }

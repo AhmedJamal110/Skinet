@@ -22,7 +22,11 @@ namespace Skinet.API.Extensions
 			services.AddIdentity<AppUser, IdentityRole>()
 				    .AddEntityFrameworkStores<AppIdentityDbContext>( );
 
-			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+			services.AddAuthentication( opt =>
+			{
+				opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			})
 				.AddJwtBearer(option =>
 				{
 					option.TokenValidationParameters = new TokenValidationParameters

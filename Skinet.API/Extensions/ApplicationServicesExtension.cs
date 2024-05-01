@@ -28,6 +28,8 @@ namespace Skinet.API.Extensions
 			services.AddScoped<IProductRepository, ProductRepository>();
 			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 			services.AddAutoMapper(typeof(MappingProfile));
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
+			services.AddScoped<IOrderServices, OrderServices>();
 			
 			services.AddSingleton<IConnectionMultiplexer>(option =>
 			{

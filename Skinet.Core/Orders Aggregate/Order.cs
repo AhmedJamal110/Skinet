@@ -14,16 +14,13 @@ namespace Skinet.Core.Orders_Aggregate
         {
             
         }
-        public Order(string buyerEmail, DateTimeOffset oderDate, OrderAddress shippingAddress, OrderStatus status, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal, string paymentIntendId)
+        public Order(string buyerEmail, OrderAddress shippingAddress, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal)
         {
             BuyerEmail = buyerEmail;
-            OderDate = oderDate;
             ShippingAddress = shippingAddress;
-            Status = status;
             this.deliveryMethod = deliveryMethod;
             Items = items;
             SubTotal = subTotal;
-            PaymentIntendId = paymentIntendId;
         }
 
         public string BuyerEmail { get; set; }
@@ -43,7 +40,7 @@ namespace Skinet.Core.Orders_Aggregate
         public decimal SubTotal { get; set; } // => quntity * price
 
 
-        public string PaymentIntendId { get; set; }
+        public string PaymentIntendId { get; set; } = string.Empty;
         public decimal GetTotal()
         {
             return SubTotal * deliveryMethod.Cost;
