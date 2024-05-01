@@ -42,6 +42,7 @@ totalCount = 0;
     GetAllProducts(){
       this._shopService.getProducts(this.ShopParams).subscribe({
         next:(response) =>{
+
          this.ProductsData = response.data,
          this.ShopParams.pageNumber = response.pageIndex;
          this.ShopParams.pageSize = response.pageSize;
