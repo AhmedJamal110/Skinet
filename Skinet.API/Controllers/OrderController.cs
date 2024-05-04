@@ -37,5 +37,35 @@ namespace Skinet.API.Controllers
             return Ok(order); 
         }
 
+
+        [HttpGet("getorders")]
+        public async Task<ActionResult<IReadOnlyList<Order>>> GetOedersForUser()
+        {
+           var buyerEmail =  User.FindFirstValue(ClaimTypes.Email);
+
+           var orders =  await _orderServices.GetOrdersForUserAsync(buyerEmail);
+
+            return Ok(orders);
+
+
+        }
+
+        [ProducesResponseType(typeof(Order) , StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse) , StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> GetOrderForUser(int id)
+        {
+            var BuyerEmail = User.FindFirstValue(ClaimTypes.Email);
+
+
+           var order =   await _orderServices.GetOrderForUserByIdAsync(BuyerEmail, id);
+
+            if (order is null)
+                return NotFound(new ApiResponse(StatusCodes.Status404NotFound));
+            return order;
+        
+        }
+    
+    
     }
 }
