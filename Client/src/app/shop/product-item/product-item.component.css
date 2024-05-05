@@ -1,0 +1,17 @@
+.btn {
+  width: 30%;
+  height: 40px;
+}
+
+.image:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.image:hover button {
+  transform: none;
+  opacity: 1;
+}
+
+
+
+

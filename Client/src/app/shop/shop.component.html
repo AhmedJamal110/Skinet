@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="typesData.length > 0 && brandsDat.length > 0">
     <div class="col-md-3">
       <h5 class="text-warning ms-5">Sort </h5>
       <select class="form-select mb-3" (change)="onSortedSelected($event)">

@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { InterceptorsErrorsInterceptor } from './core/interceptors-errors.interceptor';
+import { LoadingInterceptor } from './core/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,12 @@ import { InterceptorsErrorsInterceptor } from './core/interceptors-errors.interc
   {provide : HTTP_INTERCEPTORS ,
   useClass : InterceptorsErrorsInterceptor,
   multi : true
+  },
+  {provide : HTTP_INTERCEPTORS ,
+    useClass: LoadingInterceptor,
+    multi: true
   }
+
   ],
   bootstrap: [AppComponent]
 })

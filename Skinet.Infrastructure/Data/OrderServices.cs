@@ -1,6 +1,7 @@
 ﻿using Skinet.API.Entities;
 using Skinet.Core.Orders_Aggregate;
 using Skinet.Core.Repository;
+using Skinet.Core.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,12 +69,21 @@ namespace Skinet.Infrastructure.Data
 
         public Task<Order> GetOrderForUserByIdAsync(string BuyerEmail, int orderId)
         {
-            throw new NotImplementedException();
+
+            var Spec = new OrderSpecification(BuyerEmail, orderId);
+          var order =   _unitOfWork.Repository<Order>().GetByIdWithSpec(Spec);
+            return order;
+
         }
 
-        public Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string BuyerEmail)
+        public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string BuyerEmail)
         {
-            throw new NotImplementedException();
+            var Spec = new OrderSpecification(BuyerEmail);
+
+          var orders = await _unitOfWork.Repository<Order>().GetAllWithSpecByAsync(Spec);
+
+            return orders;
+
         }
     }
 }
