@@ -65,7 +65,16 @@ namespace Skinet.API.Controllers
             return order;
         
         }
-    
-    
+
+
+        [HttpGet("deliverymethod")]
+        public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethod()
+        {
+            var dliveryMethod = await _orderServices.GetDeliveryMethodAsync();
+
+            return Ok(dliveryMethod);
+        }
+
+
     }
 }

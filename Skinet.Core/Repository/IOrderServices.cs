@@ -17,6 +17,8 @@ namespace Skinet.Core.Repository
 
         Task<Order> GetOrderForUserByIdAsync(string BuyerEmail, int orderId);
 
+        Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodAsync(); 
+
 
     }
 }

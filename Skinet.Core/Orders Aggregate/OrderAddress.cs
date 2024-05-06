@@ -13,11 +13,11 @@ namespace Skinet.Core.Orders_Aggregate
         {
             
         }
-        public OrderAddress(string firstName, string lastName, string streat, string city, string country, string zipCode)
+        public OrderAddress(string firstName, string lastName, string street, string city, string country, string zipCode)
         {
             FirstName = firstName;
             LastName = lastName;
-            Streat = streat;
+            Street = street;
             City = city;
             Country = country;
             ZipCode = zipCode;
@@ -25,7 +25,7 @@ namespace Skinet.Core.Orders_Aggregate
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Streat { get; set; }
+        public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }

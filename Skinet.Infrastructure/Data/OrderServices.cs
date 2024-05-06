@@ -67,6 +67,8 @@ namespace Skinet.Infrastructure.Data
             return order;
         }
 
+       
+
         public Task<Order> GetOrderForUserByIdAsync(string BuyerEmail, int orderId)
         {
 
@@ -83,6 +85,19 @@ namespace Skinet.Infrastructure.Data
           var orders = await _unitOfWork.Repository<Order>().GetAllWithSpecByAsync(Spec);
 
             return orders;
+
+        }
+
+
+
+
+
+        public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodAsync()
+        {
+
+            var dliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
+
+            return dliveryMethod;
 
         }
     }
