@@ -75,6 +75,5 @@ namespace Skinet.API.Controllers
             return Ok(dliveryMethod);
         }
 
-
     }
 }

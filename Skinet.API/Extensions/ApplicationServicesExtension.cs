@@ -30,6 +30,7 @@ namespace Skinet.API.Extensions
 			services.AddAutoMapper(typeof(MappingProfile));
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IOrderServices, OrderServices>();
+			services.AddScoped<IPaymentServices, PaymentServices>();
 			
 			services.AddSingleton<IConnectionMultiplexer>(option =>
 			{

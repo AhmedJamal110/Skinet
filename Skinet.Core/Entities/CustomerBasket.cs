@@ -13,6 +13,10 @@ namespace Skinet.Core.Entities
         public List<BasketItem> Items { get; set; } = new List<BasketItem>();
 
 
+        public string? PaymentIntend { get; set; }
+        public string? ClientSecret { get; set; }
+        public int? DeliveryMethodId { get; set; }
+        public decimal ShippingCost { get; set; }
         public CustomerBasket(string id)
         {
             Id = id;
