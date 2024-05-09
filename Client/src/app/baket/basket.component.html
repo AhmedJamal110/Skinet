@@ -1,0 +1,96 @@
+<div class="container">
+  <div *ngIf="(_BasketService.basketSource$ | async) === null">
+    <h2 class="text-danger text-center">There is No Items in your Basket</h2>
+  </div>
+  <ng-container *ngIf="_BasketService.basketSource$ | async as basket">
+    <div class="container">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-uppercase">
+              <tr>
+                <th>
+                  <div class="p-2">Product</div>
+                </th>
+                <th>
+                  <div class="p-2">Price</div>
+                </th>
+                <th>
+                  <div class="p-2">Quntity</div>
+                </th>
+                <th>
+                  <div class="p-2">Total</div>
+                </th>
+                <th>
+                  <div class="p-2">Remove</div>
+                </th>
+              </tr>
+
+
+            </thead>
+
+
+            <tbody>
+              <tr *ngFor="let item of basket.items">
+                <th>
+                  <div class="d-inline-block p-2">
+                    <img src="{{item.pictureUrl}}" alt="{{item.name}}">
+                  </div>
+
+                  <div class="d-inline-block align-middle ms-">
+                    <h5 class="">
+                      <a href="" class="text-decoration-none text-dark">
+                        {{item.name}}
+                      </a>
+                    </h5>
+                    <span class="text-muted fst-italic">
+                      Type : {{item.type}}
+                    </span>
+                  </div>
+                </th>
+                <th class="align-middle">
+                  {{item.price | currency}}
+                </th>
+                <th class="align-middle">
+                  <div>
+                    <i (click)="removeQuntity(item.id , 1)" class="fa fa-minus-circle me-2 text-warning"></i>
+                    <strong class="item-quentity">{{item.quntity}}</strong>
+                    <i (click)="incementQuntity(item)" class="fa fa-plus-circle ms-2 text-warning"></i>
+                  </div>
+                </th>
+
+                <th class="align-middle">
+                  {{item.price * item.quntity | currency}}
+                </th>
+                <td class="align-middle">
+                  <a href="" class="text-danger">
+                    <i (click)="removeQuntity(item.id , item.quntity)" class="fa fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+
+
+          </table>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 offset-6">
+
+          <app-order-totals></app-order-totals>
+          <div class="d-grid">
+            <a routerLink="/checkout" class="btn btn-outline-primary py-2">Proceed To Checkout</a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </ng-container>
+
+
+
+</div>

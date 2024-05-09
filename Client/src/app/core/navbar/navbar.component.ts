@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { BasketService } from 'src/app/baket/basket.service';
+import { BasketItem } from 'src/app/shared/models/Basket';
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+
+constructor(public _BasketService:BasketService ){}
+
+
+
+  getCoount(items : BasketItem[] ){
+    return items.reduce((sum,item) => sum + item.quntity ,0 )
+
+  }
+
+
+
 
 }

@@ -9,10 +9,13 @@ import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { InterceptorsErrorsInterceptor } from './core/interceptors-errors.interceptor';
 import { LoadingInterceptor } from './core/loading.interceptor';
+import { BasketComponent } from './baket/basket.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    BasketComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { LoadingInterceptor } from './core/loading.interceptor';
     HttpClientModule,
     CoreModule,
     ShopModule,
-    HomeModule
+    HomeModule,
+    SharedModule
   ],
   providers: [
   {provide : HTTP_INTERCEPTORS ,

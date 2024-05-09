@@ -1,5 +1,7 @@
+import { BasketService } from 'src/app/baket/basket.service';
 import { Product } from './../../shared/models/Products';
 import { Component, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-product-item',
@@ -8,6 +10,13 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductItemComponent {
 
-@Input() Products? : Product;
+  @Input() Products? : Product;
+
+constructor( private _BasketService : BasketService){}
+
+
+  addItemsToBasket(){
+    this.Products && this._BasketService.addItemToBasket(this.Products);
+  }
 
 }

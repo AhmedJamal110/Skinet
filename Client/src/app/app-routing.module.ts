@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'server-error' ,  component : ServerErrorComponent},
   {path:'test-errors' ,  component : TestErrorsComponent},
   {path:'shop' , loadChildren:() => import('./shop/shop.module').then(m => m.ShopModule)},
+  {path:'basket' , loadChildren : () => import('./baket/basket.module').then(m => m.BasketModule) },
   {path:'**' , redirectTo : ''  , pathMatch:'full'},
 
 
