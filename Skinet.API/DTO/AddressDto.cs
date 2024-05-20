@@ -4,7 +4,6 @@ namespace Skinet.API.DTO
 {
 	public class AddressDto
 	{
-        [Required]
         public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }

@@ -33,6 +33,8 @@ namespace Skinet.API.Controllers
 
 
         [HttpPost("login")]
+		[ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
 
 		public async Task<ActionResult<UserDto>> Login( LoginDto model )
 		{

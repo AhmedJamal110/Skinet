@@ -34,6 +34,7 @@ namespace Skinet.API.Controllers
 		}
 
 
+		[CachedAttribute(600)]
 		[HttpGet]
 		public async Task<ActionResult<IReadOnlyList<ProductToRetrunDto>>> GetAllProducts( [FromQuery]ProductParmSpec parmSpec)
 		{

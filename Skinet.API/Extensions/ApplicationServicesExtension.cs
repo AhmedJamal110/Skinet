@@ -31,6 +31,7 @@ namespace Skinet.API.Extensions
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IOrderServices, OrderServices>();
 			services.AddScoped<IPaymentServices, PaymentServices>();
+			services.AddSingleton<IResponseCacheServices, ResponseCacheServices>();
 			
 			services.AddSingleton<IConnectionMultiplexer>(option =>
 			{
