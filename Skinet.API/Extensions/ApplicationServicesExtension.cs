@@ -17,8 +17,7 @@ namespace Skinet.API.Extensions
 
 		public static IServiceCollection ApplicationServices( this IServiceCollection services , IConfiguration configuration)
 		{
-			services.AddEndpointsApiExplorer();
-			services.AddSwaggerGen();
+			
 			
 			services.AddDbContext<WarehouseDbContext>(options =>
 			{
@@ -32,8 +31,8 @@ namespace Skinet.API.Extensions
 			services.AddScoped<IOrderServices, OrderServices>();
 			services.AddScoped<IPaymentServices, PaymentServices>();
 			services.AddSingleton<IResponseCacheServices, ResponseCacheServices>();
-			
-			services.AddSingleton<IConnectionMultiplexer>(option =>
+
+            services.AddSingleton<IConnectionMultiplexer>(option =>
 			{
 				var connection = configuration.GetConnectionString("Redis");
 				return ConnectionMultiplexer.Connect(connection);	

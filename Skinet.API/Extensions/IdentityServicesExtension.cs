@@ -25,7 +25,7 @@ namespace Skinet.API.Extensions
 			services.AddAuthentication( opt =>
 			{
 				opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-				opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+				opt.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
 			})
 				.AddJwtBearer(option =>
 				{
