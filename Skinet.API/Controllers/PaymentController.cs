@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Skinet.API.DTO;
 using Skinet.API.Errors;
@@ -18,8 +19,10 @@ namespace Skinet.API.Controllers
         }
 
 
-        [HttpPost("{basketId}")]
 
+        [Authorize]    
+        [HttpPost("{basketId}")]
+        
         public async Task<ActionResult<CustomerBasketDto>> CreateOrUpdatePayment(string basketId)
         {
             var basket = await _paymentServices.CreateOrUpdatePaymentIntend(basketId);
